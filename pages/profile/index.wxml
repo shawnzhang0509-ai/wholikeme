@@ -1,30 +1,74 @@
 <view class="container">
   <view class="eyebrow">Identity seed</view>
   <view class="title">先留下一点线索</view>
-  <view class="subtitle">这些信息以后会成为关系图谱的起点。</view>
+  <view class="subtitle">School-first：先确认学校，再开始匹配。不接全国城市库，仅演示用静态省市。</view>
 
   <view class="form">
     <view class="field">
       <view class="label">姓名 *</view>
       <input class="input" value="{{form.name}}" placeholder="例如：张三" bindinput="onInput" data-key="name" />
     </view>
+
     <view class="field">
-      <view class="label">学校</view>
-      <input class="input" value="{{form.school}}" placeholder="例如：Auckland Grammar School" bindinput="onInput" data-key="school" />
+      <view class="label">学校（原始输入）</view>
+      <input class="input" value="{{form.schoolRaw}}" placeholder="例如：实验、一中、外国语学校" bindinput="onInput" data-key="schoolRaw" bindblur="searchSchools" />
+      <view class="hint">输入简称或全称，系统会在 mock 学校库中消歧。</view>
     </view>
+
+    <view class="action-stack">
+      <ui-button type="accent" bindtap="searchSchools">查找并确认学校</ui-button>
+    </view>
+
+    <view wx:if="{{showCandidates && candidates.length}}" class="candidate-box">
+      <view class="label">选择你的学校（{{candidates.length}} 个候选）</view>
+      <view
+        wx:for="{{candidates}}"
+        wx:key="id"
+        class="candidate {{selectedSchoolId === item.id ? 'is-selected' : ''}}"
+        bindtap="selectCandidate"
+        data-id="{{item.id}}"
+      >
+        {{item.label}}
+      </view>
+    </view>
+
+    <view class="action-stack compact">
+      <ui-button type="secondary" bindtap="openCreateSchool">都不是，创建学校</ui-button>
+    </view>
+
+    <view wx:if="{{showCreatePanel}}" class="create-panel">
+      <view class="label">创建学校（演示）</view>
+      <view class="hint">使用内置省 / 地级市列表；区县级仅可选填文本，不做全国库。</view>
+      <picker mode="selector" range="{{provinceOptions}}" value="{{provinceIndex}}" bindchange="onProvinceChange">
+        <view class="picker-line">省份：{{provinceOptions[provinceIndex]}}</view>
+      </picker>
+      <picker mode="selector" range="{{cityOptions}}" value="{{cityIndex}}" bindchange="onCityChange">
+        <view class="picker-line">地级市：{{cityOptions[cityIndex]}}</view>
+      </picker>
+      <input class="input" value="{{createForm.districtText}}" placeholder="区 / 县（可选文本）" bindinput="onCreateDistrictInput" />
+      <view class="action-stack compact">
+        <ui-button type="accent" bindtap="submitCreateSchool">创建并使用这所学校</ui-button>
+      </view>
+    </view>
+
+    <view wx:if="{{resolvedSchoolId}}" class="confirmed">
+      <view class="label">已确认学校</view>
+      <view class="confirmed-text">{{confirmedSchoolDisplay}}</view>
+    </view>
+
     <view class="row">
       <view class="field half">
         <view class="label">入学年份</view>
         <input class="input" type="number" value="{{form.enrollmentYear}}" placeholder="2010" bindinput="onInput" data-key="enrollmentYear" />
       </view>
       <view class="field half">
-        <view class="label">城市</view>
-        <input class="input" value="{{form.city}}" placeholder="Auckland" bindinput="onInput" data-key="city" />
+        <view class="label">区 / 县（可选）</view>
+        <input class="input" value="{{form.districtText}}" placeholder="例如：西湖区" bindinput="onInput" data-key="districtText" />
       </view>
     </view>
   </view>
 
   <view style="height: 48rpx"></view>
-  <ui-button type="accent" disabled="{{!form.name}}" bindtap="submit">寻找认识我的人</ui-button>
+  <ui-button type="accent" disabled="{{!form.name || !resolvedSchoolId}}" bindtap="submit">寻找认识我的人</ui-button>
   <view class="footer-note">MVP 使用匿名演示数据，不代表真实事实。</view>
 </view>

@@ -6,8 +6,7 @@
   <view class="identity">
     <view class="secret">{{confirmed ? "✓" : "?"}}</view>
     <view class="name">{{person.name}}</view>
-    <view class="meta">{{person.school || "学校待补充"}}</view>
-    <view class="meta">{{person.enrollmentYear || "年份待补充"}} · {{person.city || "城市待补充"}}</view>
+    <view class="meta">{{person.schoolDisplay || "学校待补充"}}</view>
     <view class="hint">{{person.relationHint}}</view>
   </view>
 

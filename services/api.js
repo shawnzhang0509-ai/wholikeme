@@ -1,11 +1,17 @@
 const { match } = require('../mock/people')
 
+function localMatch(profile) {
+  const app = getApp()
+  const extra = (app && app.globalData && app.globalData.customSchools) || []
+  return match(profile, extra)
+}
+
 function request(options) {
   const app = getApp()
   const baseUrl = (app && app.globalData && app.globalData.apiBaseUrl) || ''
   return new Promise((resolve, reject) => {
     if (!baseUrl || baseUrl.includes('your-vercel-app')) {
-      resolve(match(options.data && options.data.profile))
+      resolve(localMatch(options.data && options.data.profile))
       return
     }
     wx.request({
@@ -18,7 +24,7 @@ function request(options) {
         else reject(new Error(`API ${res.statusCode}`))
       },
       fail() {
-        resolve(match(options.data && options.data.profile))
+        resolve(localMatch(options.data && options.data.profile))
       }
     })
   })
