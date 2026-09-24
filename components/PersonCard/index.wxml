@@ -1,0 +1,9 @@
+<view class="person-card" bindtap="onOpen">
+  <view class="avatar">{{initial}}</view>
+  <view class="main">
+    <view class="name">{{person.name}}</view>
+    <view class="meta">{{meta}}</view>
+    <view class="hint">{{person.relationHint}}</view>
+  </view>
+  <view class="badge {{person.type === "liked" ? "badge--liked" : ""}}">{{label}}</view>
+</view>

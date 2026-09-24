@@ -1,0 +1,13 @@
+{
+  "name": "who-liked-me-mvp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "WeChat Mini Program MVP prototype: 谁喜欢过我",
+  "scripts": {
+    "api": "vercel dev",
+    "miniprogram": "echo Open this folder in WeChat DevTools"
+  },
+  "devDependencies": {
+    "vercel": "latest"
+  }
+}

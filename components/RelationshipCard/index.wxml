@@ -1,0 +1,13 @@
+<view class="rel-card {{unlocked ? "is-unlocked" : ""}}">
+  <view class="top">
+    <view class="secret">{{unlocked ? "❤️" : "???"}}</view>
+    <view class="name">{{person.name || "某个人"}}</view>
+  </view>
+  <view class="meta">
+    <view>{{person.school || "身份片段待确认"}}</view>
+    <view>{{person.enrollmentYear ? person.enrollmentYear + " · " + person.city : person.city || ""}}</view>
+  </view>
+  <view class="hint">{{person.relationHint}}</view>
+  <view class="status">{{unlocked ? "❤️ 关系信号很强" : "❤️ 关系待解锁"}}</view>
+  <view class="more">继续探索 →</view>
+</view>

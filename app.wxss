@@ -1,0 +1,71 @@
+@import './styles/theme.wxss';
+
+page {
+  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.container {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 48rpx 40rpx 80rpx;
+}
+
+.hero {
+  padding-top: 96rpx;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-size: 24rpx;
+  letter-spacing: 8rpx;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 24rpx;
+  font-size: 68rpx;
+  line-height: 1.08;
+  font-weight: 800;
+  letter-spacing: -2rpx;
+}
+
+.subtitle {
+  margin-top: 24rpx;
+  color: var(--soft-ink);
+  font-size: 30rpx;
+  line-height: 1.7;
+}
+
+.section-title {
+  margin-top: 56rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.section-sub {
+  margin-top: 12rpx;
+  color: var(--muted);
+  font-size: 26rpx;
+  line-height: 1.6;
+}
+
+.demo-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 8rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(242, 139, 130, 0.12);
+  color: var(--accent);
+  font-size: 22rpx;
+}
+
+.footer-note {
+  margin-top: 56rpx;
+  color: var(--muted);
+  font-size: 22rpx;
+  line-height: 1.7;
+}

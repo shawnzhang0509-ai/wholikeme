@@ -1,0 +1,13 @@
+.form { margin-top: 56rpx; }
+.field { margin-bottom: 28rpx; }
+.row { display: flex; gap: 24rpx; }
+.half { flex: 1; }
+.label { margin-bottom: 14rpx; color: var(--muted); font-size: 24rpx; }
+.input {
+  height: 96rpx;
+  padding: 0 28rpx;
+  border-radius: 24rpx;
+  background: var(--surface);
+  border: 1rpx solid var(--line);
+  font-size: 30rpx;
+}

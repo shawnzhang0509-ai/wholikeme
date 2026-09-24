@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/profile/index",
+    "pages/matching/index",
+    "pages/results/index",
+    "pages/person/index",
+    "pages/relationship/index"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFF8F1",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "谁喜欢过我",
+    "backgroundColor": "#FFF8F1",
+    "backgroundTextStyle": "dark"
+  },
+  "style": "v2",
+  "lazyCodeLoading": "requiredComponents",
+  "sitemapLocation": "sitemap.json"
+}

@@ -1,0 +1,4 @@
+.chips { display: flex; flex-wrap: wrap; gap: 16rpx; margin: 36rpx 0 8rpx; }
+.chip { padding: 14rpx 20rpx; border-radius: 999rpx; background: rgba(45,35,39,.06); font-size: 24rpx; color: var(--soft-ink); }
+.chip.liked { background: rgba(232,111,103,.14); color: var(--accent-strong); }
+ui-button { margin-top: 22rpx; }

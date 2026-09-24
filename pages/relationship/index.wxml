@@ -1,0 +1,13 @@
+<view class="container" wx:if="{{target}}">
+  <view class="eyebrow">Unlock gradually</view>
+  <view class="title">{{stages[stageIndex].title}}</view>
+  <view class="subtitle">{{stages[stageIndex].detail}}</view>
+  <view class="demo-tag">Prototype · 逐渐揭示，不一次给答案</view>
+
+  <view style="height: 42rpx"></view>
+  <relationship-card person="{{target}}" unlocked="{{stageIndex >= 4}}" />
+
+  <view style="height: 36rpx"></view>
+  <ui-button type="accent" bindtap="next">{{stageIndex >= stages.length - 1 ? "继续解锁" : "继续"}}</ui-button>
+  <ui-button type="ghost" bindtap="back">返回结果</ui-button>
+</view>

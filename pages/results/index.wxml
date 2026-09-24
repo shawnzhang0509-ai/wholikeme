@@ -1,0 +1,21 @@
+<view class="container">
+  <view class="eyebrow">Matching result</view>
+  <view class="title">我们发现了一些可能与你有关的人</view>
+  <view class="subtitle">Prototype 数据：{{match.total}} 个可能认识你的人</view>
+  <view class="demo-tag">Demo data · 不是真实事实</view>
+
+  <view class="chips">
+    <view class="chip liked">❤️ {{match.summary.liked}} 个可能情感关系</view>
+    <view class="chip">👩 {{match.summary.classmates}} 个可能是同学</view>
+    <view class="chip">👨 {{match.summary.friends}} 个可能是朋友</view>
+    <view class="chip">👀 {{match.summary.unknown}} 个身份待确认</view>
+  </view>
+
+  <view class="section-title">先确认是不是认识的人</view>
+  <view class="section-sub">确认身份不是审问，而是在一点点缩小答案范围。</view>
+  <person-card wx:for="{{match.people}}" wx:key="id" person="{{item}}" bindopen="openPerson" />
+
+  <view style="height: 28rpx"></view>
+  <ui-button type="accent" bindtap="goRelationship">查看关系信号</ui-button>
+  <ui-button type="ghost" bindtap="share">分享给朋友</ui-button>
+</view>

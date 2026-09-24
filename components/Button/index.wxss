@@ -1,0 +1,22 @@
+.btn {
+  width: 100%;
+  height: 104rpx;
+  border-radius: 999rpx;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ink);
+  color: var(--surface);
+  font-size: 30rpx;
+  font-weight: 700;
+  box-shadow: var(--shadow);
+}
+.btn::after { border: 0; }
+.btn--ghost {
+  background: rgba(45, 35, 39, 0.06);
+  color: var(--ink);
+  box-shadow: none;
+}
+.btn--accent { background: linear-gradient(135deg, var(--accent), var(--accent-strong)); }
+.is-loading { opacity: 0.72; }

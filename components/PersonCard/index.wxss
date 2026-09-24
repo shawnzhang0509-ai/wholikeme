@@ -1,0 +1,37 @@
+.person-card {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+  padding: 28rpx;
+  border: 1rpx solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  margin-bottom: 22rpx;
+}
+.avatar {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #ffe0d6, #fff1c9);
+  color: var(--accent-strong);
+  font-weight: 900;
+  font-size: 34rpx;
+}
+.main { flex: 1; min-width: 0; }
+.name { font-size: 32rpx; font-weight: 800; }
+.meta { margin-top: 6rpx; color: var(--muted); font-size: 24rpx; }
+.hint { margin-top: 8rpx; color: var(--soft-ink); font-size: 24rpx; }
+.badge {
+  max-width: 190rpx;
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(45, 35, 39, 0.06);
+  color: var(--soft-ink);
+  font-size: 22rpx;
+  text-align: center;
+}
+.badge--liked { background: rgba(232, 111, 103, 0.14); color: var(--accent-strong); }

@@ -1,0 +1,14 @@
+<view class="container hero">
+  <view class="eyebrow">A quiet relationship prototype</view>
+  <view class="title">谁喜欢过我？</view>
+  <view class="subtitle">有些喜欢，从来没有说出口。</view>
+  <view class="demo-tag">Prototype · Demo Data</view>
+
+  <view style="height: 72rpx"></view>
+  <ui-button type="accent" bindtap="goProfile">开始寻找</ui-button>
+  <ui-button type="ghost" bindtap="share">分享给朋友</ui-button>
+
+  <view class="footer-note">
+    第一版只验证一件事：当你知道答案可能藏在认识的人里面，你会不会想知道。
+  </view>
+</view>

@@ -1,0 +1,1 @@
+page { background: radial-gradient(circle at 50% 20%, #fff1e8, var(--bg) 58%); }

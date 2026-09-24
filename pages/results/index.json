@@ -1,0 +1,4 @@
+{
+  "navigationBarTitleText": "匹配结果",
+  "usingComponents": { "ui-button": "/components/Button/index", "person-card": "/components/PersonCard/index" }
+}

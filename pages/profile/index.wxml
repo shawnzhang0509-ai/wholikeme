@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="eyebrow">Identity seed</view>
+  <view class="title">先留下一点线索</view>
+  <view class="subtitle">这些信息以后会成为关系图谱的起点。</view>
+
+  <view class="form">
+    <view class="field">
+      <view class="label">姓名 *</view>
+      <input class="input" value="{{form.name}}" placeholder="例如：张三" bindinput="onInput" data-key="name" />
+    </view>
+    <view class="field">
+      <view class="label">学校</view>
+      <input class="input" value="{{form.school}}" placeholder="例如：Auckland Grammar School" bindinput="onInput" data-key="school" />
+    </view>
+    <view class="row">
+      <view class="field half">
+        <view class="label">入学年份</view>
+        <input class="input" type="number" value="{{form.enrollmentYear}}" placeholder="2010" bindinput="onInput" data-key="enrollmentYear" />
+      </view>
+      <view class="field half">
+        <view class="label">城市</view>
+        <input class="input" value="{{form.city}}" placeholder="Auckland" bindinput="onInput" data-key="city" />
+      </view>
+    </view>
+  </view>
+
+  <view style="height: 48rpx"></view>
+  <ui-button type="accent" disabled="{{!form.name}}" bindtap="submit">寻找认识我的人</ui-button>
+  <view class="footer-note">MVP 使用匿名演示数据，不代表真实事实。</view>
+</view>

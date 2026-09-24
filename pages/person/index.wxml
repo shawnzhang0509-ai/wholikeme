@@ -1,0 +1,17 @@
+<view class="container" wx:if="{{person}}">
+  <view class="eyebrow">Identity matching</view>
+  <view class="title">是这个{{person.name}}吗？</view>
+  <view class="subtitle">系统找到了一个相似身份，但还不知道是不是你认识的那个人。</view>
+
+  <view class="identity">
+    <view class="secret">{{confirmed ? "✓" : "?"}}</view>
+    <view class="name">{{person.name}}</view>
+    <view class="meta">{{person.school || "学校待补充"}}</view>
+    <view class="meta">{{person.enrollmentYear || "年份待补充"}} · {{person.city || "城市待补充"}}</view>
+    <view class="hint">{{person.relationHint}}</view>
+  </view>
+
+  <view style="height: 48rpx"></view>
+  <ui-button type="accent" bindtap="confirm">是，我认识他</ui-button>
+  <ui-button type="ghost" bindtap="dismiss">不是这个人</ui-button>
+</view>

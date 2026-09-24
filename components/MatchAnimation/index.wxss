@@ -1,0 +1,20 @@
+.match-animation { display: flex; flex-direction: column; align-items: center; padding: 120rpx 40rpx; }
+.orb {
+  width: 220rpx;
+  height: 220rpx;
+  border-radius: 50%;
+  position: relative;
+  background: radial-gradient(circle at 35% 30%, #fff0dd, #ffd8cd 55%, #f3a493);
+  box-shadow: 0 24rpx 80rpx rgba(232, 111, 103, 0.28);
+  animation: breathe 1.6s ease-in-out infinite;
+}
+.core {
+  position: absolute;
+  inset: 54rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.55);
+  animation: pulse 1.6s ease-in-out infinite;
+}
+.line { margin-top: 56rpx; color: var(--soft-ink); font-size: 30rpx; }
+@keyframes breathe { 0%,100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+@keyframes pulse { 0%,100% { transform: scale(0.9); opacity: .75; } 50% { transform: scale(1.08); opacity: 1; } }

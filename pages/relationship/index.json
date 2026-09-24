@@ -1,0 +1,4 @@
+{
+  "navigationBarTitleText": "关系信号",
+  "usingComponents": { "ui-button": "/components/Button/index", "relationship-card": "/components/RelationshipCard/index" }
+}
