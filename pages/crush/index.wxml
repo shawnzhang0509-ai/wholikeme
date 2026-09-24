@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="eyebrow">Mutual crush · experiment</view>
+  <view class="title">写下 3 个名字</view>
+  <view class="subtitle">若互相写下，信号会亮。不会打扰对方；单方面的心动永远不会展示给另一方。</view>
+  <view class="demo-tag">Prototype · Demo Data</view>
+
+  <view class="form">
+    <view class="field">
+      <view class="label">我的名字 *</view>
+      <input class="input" value="{{form.name}}" placeholder="例如：小林" bindinput="onUserInput" data-key="name" />
+    </view>
+
+    <view class="field">
+      <view class="label">我的学校 *</view>
+      <input class="input" value="{{form.schoolRaw}}" placeholder="例如：实验中学" bindinput="onUserInput" data-key="schoolRaw" />
+      <view class="hint">含「实验 / 一中 / 二中 / 外国语」时会给出 2 个 mock 候选；否则创建 pending 学校。</view>
+      <view class="action">
+        <ui-button type="accent" bindtap="confirmSchool">确认学校</ui-button>
+      </view>
+      <view wx:if="{{showCandidates}}" class="hint">请选择你的学校：</view>
+      <view
+        wx:for="{{candidates}}"
+        wx:key="id"
+        class="candidate {{schoolId === item.id ? 'is-selected' : ''}}"
+        bindtap="selectSchool"
+        data-id="{{item.id}}"
+      >{{item.label}}</view>
+      <view wx:if="{{schoolLabel}}" class="confirmed">已选：{{schoolLabel}}</view>
+    </view>
+
+    <view class="field">
+      <view class="label">我的入学年份 *</view>
+      <input class="input" type="number" value="{{form.enrollmentYear}}" placeholder="2010" bindinput="onUserInput" data-key="enrollmentYear" />
+    </view>
+
+    <view class="field">
+      <view class="label">城市（可选）</view>
+      <input class="input" value="{{form.city}}" placeholder="例如：杭州" bindinput="onUserInput" data-key="city" />
+    </view>
+
+    <view class="section-title">心动名单（1–3 个）</view>
+    <view class="section-sub">每个至少填写对方名字；学校 / 年份可选。不能按名字搜索谁喜欢你。</view>
+
+    <view wx:for="{{crushes}}" wx:key="index" class="crush-block">
+      <view class="block-title">心动 {{index + 1}}</view>
+      <view class="field">
+        <view class="label">对方名字 *</view>
+        <input class="input" value="{{item.targetName}}" placeholder="例如：Ada" bindinput="onCrushInput" data-index="{{index}}" data-field="targetName" />
+      </view>
+      <view class="field">
+        <view class="label">对方学校（可选）</view>
+        <input class="input" value="{{item.targetSchool}}" placeholder="可选" bindinput="onCrushInput" data-index="{{index}}" data-field="targetSchool" />
+      </view>
+      <view class="field">
+        <view class="label">对方入学年份（可选）</view>
+        <input class="input" type="number" value="{{item.targetYear}}" placeholder="可选" bindinput="onCrushInput" data-index="{{index}}" data-field="targetYear" />
+      </view>
+      <ui-button wx:if="{{crushes.length > 1}}" type="ghost" bindtap="removeCrush" data-index="{{index}}">移除这一位</ui-button>
+    </view>
+
+    <view class="action" wx:if="{{crushes.length < 3}}">
+      <ui-button type="secondary" bindtap="addCrush">再加一个名字</ui-button>
+    </view>
+  </view>
+
+  <view class="boundary">
+    安全边界（实验演示）：不通知被写下的人；不允许「谁喜欢我」式搜索；不公开任何心动名单；无聊天、无支付、无真实分享链路。
+  </view>
+
+  <view class="action">
+    <ui-button type="accent" bindtap="submit">放进风里</ui-button>
+  </view>
+</view>

@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="demo-tag">Prototype · Demo Data · Local mock only</view>
+
+  <block wx:if="{{phase === 'waiting'}}">
+    <match-animation lines="{{lines}}" interval="900" binddone="onAnimationDone" />
+  </block>
+
+  <block wx:else>
+    <view class="eyebrow">Signal</view>
+    <view class="title result">{{title}}</view>
+    <view class="subtitle">{{subtitle}}</view>
+
+    <block wx:if="{{outcome === 'mutual' && revealCard}}">
+      <view style="height: 36rpx"></view>
+      <relationship-card person="{{revealCard}}" unlocked="{{true}}" signal="mutual_crush" />
+    </block>
+
+    <view class="note">
+      实验说明：不会展示单方喜欢或「被拒绝」。不提供按名字查询谁喜欢过我。真实环境需后端与隐私策略，本页仅为 mutual-crush MVP 演示。
+    </view>
+
+    <view style="height: 32rpx"></view>
+    <ui-button type="accent" bindtap="tryAgain">再写一组名字</ui-button>
+    <ui-button type="ghost" bindtap="backHome">回到首页</ui-button>
+  </block>
+</view>

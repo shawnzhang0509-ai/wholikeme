@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/crush/index",
+    "pages/crushReveal/index",
     "pages/profile/index",
     "pages/matching/index",
     "pages/results/index",

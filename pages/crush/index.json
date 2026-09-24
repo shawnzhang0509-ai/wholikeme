@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "写下名字",
+  "usingComponents": {
+    "ui-button": "/components/Button/index"
+  }
+}

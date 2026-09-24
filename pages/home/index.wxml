@@ -1,14 +1,13 @@
 <view class="container hero">
-  <view class="eyebrow">A quiet relationship prototype</view>
+  <view class="eyebrow">Mutual crush experiment</view>
   <view class="title">谁喜欢过我？</view>
-  <view class="subtitle">有些喜欢，从来没有说出口。</view>
+  <view class="subtitle">写下 3 个名字。若互相写下，信号会亮。</view>
   <view class="demo-tag">Prototype · Demo Data</view>
 
   <view style="height: 72rpx"></view>
-  <ui-button type="accent" bindtap="goProfile">开始寻找</ui-button>
-  <ui-button type="ghost" bindtap="share">分享给朋友</ui-button>
+  <ui-button type="accent" bindtap="goCrush">开始写下名字</ui-button>
 
   <view class="footer-note">
-    第一版只验证一件事：当你知道答案可能藏在认识的人里面，你会不会想知道。
+    实验分支：不会打扰对方；只有双向写下才会亮起信号。不能搜索「谁喜欢我」，也不展示单方心动。
   </view>
 </view>

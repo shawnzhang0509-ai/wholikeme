@@ -1,9 +1,8 @@
 Page({
-  goProfile() { wx.navigateTo({ url: '/pages/profile/index' }) },
-  share() {
-    wx.showToast({ title: '分享已预留', icon: 'none' })
+  goCrush() {
+    wx.navigateTo({ url: '/pages/crush/index' })
   },
   onShareAppMessage() {
-    return { title: '谁喜欢过我？有些喜欢，从来没有说出口。', path: '/pages/home/index' }
+    return { title: '谁喜欢过我？', path: '/pages/home/index' }
   }
 })

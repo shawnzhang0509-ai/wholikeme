@@ -4,6 +4,8 @@ App({
     match: null,
     confirmedPeople: [],
     dismissedPeople: [],
+    crushPendingSchools: [],
+    lastCrushSubmission: null,
     apiBaseUrl: 'https://your-vercel-app.vercel.app'
   },
 
