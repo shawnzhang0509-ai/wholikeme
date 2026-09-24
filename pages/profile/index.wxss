@@ -25,8 +25,9 @@
   border-color: var(--accent, #c45);
   background: rgba(196, 85, 85, 0.06);
 }
-.none-row { margin: 20rpx 0 8rpx; }
-.link { color: var(--accent, #c45); font-size: 26rpx; text-decoration: underline; }
+.action-stack { margin-top: 28rpx; }
+.action-stack.compact { margin-top: 20rpx; }
+.action-stack ui-button { display: block; }
 .create-panel {
   margin-top: 20rpx;
   padding: 28rpx;

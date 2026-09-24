@@ -15,7 +15,9 @@
       <view class="hint">输入简称或全称，系统会在 mock 学校库中消歧。</view>
     </view>
 
-    <ui-button type="ghost" bindtap="searchSchools">查找并确认学校</ui-button>
+    <view class="action-stack">
+      <ui-button type="accent" bindtap="searchSchools">查找并确认学校</ui-button>
+    </view>
 
     <view wx:if="{{showCandidates && candidates.length}}" class="candidate-box">
       <view class="label">选择你的学校（{{candidates.length}} 个候选）</view>
@@ -30,8 +32,8 @@
       </view>
     </view>
 
-    <view class="none-row">
-      <text class="link" bindtap="openCreateSchool">都不是，创建学校</text>
+    <view class="action-stack compact">
+      <ui-button type="secondary" bindtap="openCreateSchool">都不是，创建学校</ui-button>
     </view>
 
     <view wx:if="{{showCreatePanel}}" class="create-panel">
@@ -44,7 +46,9 @@
         <view class="picker-line">地级市：{{cityOptions[cityIndex]}}</view>
       </picker>
       <input class="input" value="{{createForm.districtText}}" placeholder="区 / 县（可选文本）" bindinput="onCreateDistrictInput" />
-      <ui-button type="accent" bindtap="submitCreateSchool">创建并使用这所学校</ui-button>
+      <view class="action-stack compact">
+        <ui-button type="accent" bindtap="submitCreateSchool">创建并使用这所学校</ui-button>
+      </view>
     </view>
 
     <view wx:if="{{resolvedSchoolId}}" class="confirmed">

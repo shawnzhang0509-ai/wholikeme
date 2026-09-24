@@ -9,18 +9,18 @@ const demoProfile = {
 }
 
 const people = [
-  { id: 'p1', name: '李然', schoolId: 'sch_hz_sy', enrollmentYear: '2010', relationHint: '可能与你同班', type: 'liked', revealLevel: 1 },
-  { id: 'p2', name: '王晨', schoolId: 'sch_hz_sy', enrollmentYear: '2010', relationHint: '可能与你同校同届', type: 'classmate', revealLevel: 2 },
-  { id: 'p3', name: '周舟', schoolId: 'sch_hz_sy', enrollmentYear: '2012', relationHint: '可能与你同校', type: 'schoolmate', revealLevel: 2 },
-  { id: 'p4', name: '陈晨', schoolId: 'sch_hz_sy', enrollmentYear: '2010', relationHint: '可能与你同班', type: 'classmate', revealLevel: 3 },
-  { id: 'p5', name: '赵一', schoolId: 'sch_hz_sy', enrollmentYear: '2011', relationHint: '可能与你同校', type: 'friend', revealLevel: 2 },
-  { id: 'p6', name: '孙茜', schoolId: 'sch_hz_sy', enrollmentYear: '2010', relationHint: '可能与你同届', type: 'classmate', revealLevel: 3 },
-  { id: 'p7', name: '吴桐', schoolId: 'sch_nj_sy', enrollmentYear: '2010', relationHint: '同名学校 · 南京', type: 'friend', revealLevel: 4 },
-  { id: 'p8', name: '林溪', schoolId: 'sch_hz_sy', enrollmentYear: '2009', relationHint: '可能与你同校', type: 'schoolmate', revealLevel: 2 },
-  { id: 'u1', name: 'Unknown #01', schoolId: null, enrollmentYear: null, relationHint: '身份暂时无法确认', type: 'unknown', revealLevel: 5 },
-  { id: 'u2', name: 'Unknown #02', schoolId: 'sch_hz_sy', enrollmentYear: null, relationHint: '身份暂时无法确认', type: 'unknown', revealLevel: 5 },
-  { id: 'p9', name: '何苗', schoolId: 'sch_hz_yz', enrollmentYear: '2010', relationHint: '同城另一所学校', type: 'classmate', revealLevel: 4 },
-  { id: 'p10', name: 'Kevin', schoolId: 'sch_hz_sy', enrollmentYear: '2013', relationHint: '可能与你同校', type: 'schoolmate', revealLevel: 2 }
+  { id: 'p1', name: '李然', schoolId: 'sch_hz_sy', enrollmentYear: '2010', type: 'liked', revealLevel: 1 },
+  { id: 'p2', name: '王晨', schoolId: 'sch_hz_sy', enrollmentYear: '2010', type: 'classmate', revealLevel: 2 },
+  { id: 'p3', name: '周舟', schoolId: 'sch_hz_sy', enrollmentYear: '2012', type: 'schoolmate', revealLevel: 2 },
+  { id: 'p4', name: '陈晨', schoolId: 'sch_hz_sy', enrollmentYear: '2010', type: 'classmate', revealLevel: 3 },
+  { id: 'p5', name: '赵一', schoolId: 'sch_hz_sy', enrollmentYear: '2011', type: 'friend', revealLevel: 2 },
+  { id: 'p6', name: '孙茜', schoolId: 'sch_hz_sy', enrollmentYear: '2010', type: 'classmate', revealLevel: 3 },
+  { id: 'p7', name: '吴桐', schoolId: 'sch_nj_sy', enrollmentYear: '2010', type: 'friend', revealLevel: 4 },
+  { id: 'p8', name: '林溪', schoolId: 'sch_hz_sy', enrollmentYear: '2009', type: 'schoolmate', revealLevel: 2 },
+  { id: 'u1', name: 'Unknown #01', schoolId: null, enrollmentYear: null, type: 'unknown', revealLevel: 5 },
+  { id: 'u2', name: 'Unknown #02', schoolId: 'sch_hz_sy', enrollmentYear: null, type: 'unknown', revealLevel: 5 },
+  { id: 'p9', name: '何苗', schoolId: 'sch_hz_yz', enrollmentYear: '2010', type: 'classmate', revealLevel: 4 },
+  { id: 'p10', name: 'Kevin', schoolId: 'sch_hz_sy', enrollmentYear: '2013', type: 'schoolmate', revealLevel: 2 }
 ]
 
 const stages = [
@@ -31,30 +31,66 @@ const stages = [
   { key: 'heart', title: '❤️ 有 1 个人与你的关系高度匹配。', detail: '暂不显示姓名，先保留一点悬念。' }
 ]
 
+function buildRelationHint(person, query) {
+  if (person.type === 'unknown') return '身份暂时无法确认'
+
+  const userYear = String(query.enrollmentYear || '').trim()
+  const year = String(person.enrollmentYear || '').trim()
+
+  if (userYear && year && userYear === year) {
+    if (person.type === 'classmate') return '与你同校同届 · 可能同班'
+    if (person.type === 'liked') return '与你同校同届 · 关系信号较强'
+    return '与你同校同届'
+  }
+  if (userYear && year && userYear !== year) {
+    return '与你同一所学校 · 不同届'
+  }
+  return '与你确认了同一所学校'
+}
+
+function summarize(list) {
+  return list.reduce(
+    (acc, p) => {
+      if (p.type === 'liked') acc.liked += 1
+      else if (p.type === 'classmate' || p.type === 'schoolmate') acc.classmates += 1
+      else if (p.type === 'friend') acc.friends += 1
+      else if (p.type === 'unknown') acc.unknown += 1
+      return acc
+    },
+    { liked: 0, classmates: 0, friends: 0, unknown: 0 }
+  )
+}
+
 function match(profile, extraSchools = []) {
   const query = profile || demoProfile
   const schoolId = query.resolvedSchoolId
   const enriched = people.map((p) => enrichPerson(p, extraSchools))
-  const sameSchool = enriched.filter((p) => p.schoolId && p.schoolId === schoolId)
-  const related = enriched.filter((p) => p.type !== 'unknown' && (p.schoolId === schoolId || p.type === 'friend'))
-  const list = schoolId ? [...sameSchool, ...related.filter((p) => !sameSchool.find((s) => s.id === p.id)), ...enriched.filter((p) => p.type === 'unknown')] : []
-  const unique = []
-  const seen = new Set()
-  ;(list.length ? list : enriched).forEach((p) => {
-    if (seen.has(p.id)) return
-    seen.add(p.id)
-    unique.push(p)
-  })
+
+  if (!schoolId) {
+    return { demo: true, query, schoolId: null, total: 0, summary: summarize([]), people: [], stages }
+  }
+
+  const matched = enriched
+    .filter((p) => {
+      if (p.type === 'unknown') return p.schoolId == null || p.schoolId === schoolId
+      return p.schoolId === schoolId
+    })
+    .map((p) => ({
+      ...p,
+      relationHint: buildRelationHint(p, query)
+    }))
+
+  const summary = summarize(matched)
 
   return {
     demo: true,
     query,
     schoolId,
-    total: unique.length,
-    summary: { liked: 3, classmates: 5, friends: 2, unknown: 2 },
-    people: unique.slice(0, 12),
+    total: matched.length,
+    summary,
+    people: matched,
     stages
   }
 }
 
-module.exports = { demoProfile, people, stages, match }
+module.exports = { demoProfile, people, stages, match, buildRelationHint }
