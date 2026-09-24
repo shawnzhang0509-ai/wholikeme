@@ -1,0 +1,58 @@
+<view class="container">
+  <view class="eyebrow">My records</view>
+  <view class="title">我喜欢过的人</view>
+  <view class="subtitle">默认是灰的记录。双向确认后才会点亮。</view>
+  <view class="demo-tag">Prototype · Demo Data · Local mock</view>
+
+  <view class="top-actions">
+    <ui-button type="accent" bindtap="goRecord">再写一个</ui-button>
+  </view>
+
+  <view wx:if="{{checking}}" class="checking">正在轻轻核对信号…</view>
+
+  <block wx:if="{{records.length}}">
+    <view
+      wx:for="{{records}}"
+      wx:key="id"
+      class="card {{item.status === 'lit' ? 'is-lit' : ''}}"
+    >
+      <view class="card-head">
+        <view class="card-name">{{item.status === 'lit' ? item.targetNameRaw : '???'}}</view>
+        <view class="card-tag">{{item.status === 'lit' ? 'signal=mutual_crush' : '未点亮'}}</view>
+      </view>
+
+      <view class="card-sub" wx:if="{{item.status === 'lit'}}">
+        这一条记录已点亮。不会展示任何单方或未确认的信息。
+      </view>
+      <view class="card-sub" wx:elif="{{item.status === 'lit_pending_identity'}}">
+        一条关系资料待确认身份…
+      </view>
+      <view class="card-sub" wx:else>
+        一条关系资料待确认 · 这不等于拒绝
+      </view>
+
+      <view wx:if="{{item.status === 'lit_pending_identity' && item.demoReveal}}" class="confirm">
+        <view class="confirm-title">是不是这个 {{item.demoReveal.name}}？</view>
+        <view class="fragment">{{item.demoReveal.schoolFragment}}</view>
+        <view class="fragment">{{item.demoReveal.yearFragment}}</view>
+        <view class="confirm-actions">
+          <ui-button type="accent" bindtap="onConfirmIdentity" data-id="{{item.id}}">是，身份对得上</ui-button>
+          <ui-button type="ghost" bindtap="onRejectIdentity" data-id="{{item.id}}">不是这个人</ui-button>
+        </view>
+      </view>
+
+      <view class="confirm-actions" wx:if="{{item.status !== 'lit_pending_identity'}}">
+        <ui-button type="ghost" bindtap="onRemove" data-id="{{item.id}}">删除这条记录</ui-button>
+      </view>
+    </view>
+  </block>
+
+  <view wx:else class="empty">
+    <view>还没有记录。</view>
+    <view style="margin-top: 12rpx">从首页「记录一个名字」开始，一次只写一个人。</view>
+  </view>
+
+  <view class="boundary">
+    删除仅移除本地演示记录。不提供「谁记录过我」搜索；单方面记录永远不展示给另一方。
+  </view>
+</view>

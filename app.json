@@ -1,6 +1,8 @@
 {
   "pages": [
     "pages/home/index",
+    "pages/record/index",
+    "pages/records/index",
     "pages/profile/index",
     "pages/matching/index",
     "pages/results/index",
@@ -10,7 +12,7 @@
   "window": {
     "navigationBarBackgroundColor": "#FFF8F1",
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "谁喜欢过我",
+    "navigationBarTitleText": "我喜欢过谁",
     "backgroundColor": "#FFF8F1",
     "backgroundTextStyle": "dark"
   },

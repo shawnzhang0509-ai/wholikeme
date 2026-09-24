@@ -1,0 +1,73 @@
+<view class="container">
+  <view class="demo-tag">Prototype · Demo Data</view>
+
+  <block wx:if="{{phase === 'form'}}">
+    <view class="eyebrow">I liked record</view>
+    <view class="title">记录一个名字</view>
+    <view class="subtitle">一次只记一个人。记录默认是灰的，只有双向确认后才会点亮。</view>
+
+    <view class="form">
+      <view class="section">
+        <view class="section-head">A. 我的身份锚点</view>
+        <view class="section-sub" wx:if="{{!hasAnchor}}">首次记录必填，用于以后继续完善关系资料。</view>
+        <view class="anchor-summary" wx:else>{{anchorSummary}}</view>
+
+        <block wx:if="{{!hasAnchor}}">
+          <view class="field">
+            <view class="label">我的名字 *</view>
+            <input class="input" value="{{form.name}}" placeholder="例如：小林" bindinput="onInput" data-key="name" />
+          </view>
+          <view class="field">
+            <view class="label">我的学校 *</view>
+            <input class="input" value="{{form.schoolRaw}}" placeholder="例如：实验中学" bindinput="onInput" data-key="schoolRaw" />
+            <view class="hint">含实验/一中/二中/外国语 → 2 个 mock 候选；否则 pending 学校。</view>
+            <view class="action"><ui-button type="accent" bindtap="confirmSchool">确认学校</ui-button></view>
+            <view wx:for="{{candidates}}" wx:key="id" class="candidate {{schoolId === item.id ? 'is-selected' : ''}}" bindtap="selectSchool" data-id="{{item.id}}">{{item.label}}</view>
+            <view wx:if="{{schoolLabel}}" class="confirmed">已选：{{schoolLabel}}</view>
+          </view>
+          <view class="field">
+            <view class="label">我的入学年份 *</view>
+            <input class="input" type="number" value="{{form.enrollmentYear}}" placeholder="2010" bindinput="onInput" data-key="enrollmentYear" />
+          </view>
+          <view class="field">
+            <view class="label">城市（可选）</view>
+            <input class="input" value="{{form.city}}" placeholder="例如：杭州" bindinput="onInput" data-key="city" />
+          </view>
+        </block>
+      </view>
+
+      <view class="section">
+        <view class="section-head">B. 这一个我喜欢过的人</view>
+        <view class="section-sub">一次只能写一个名字；对方学校/年份可选。不做表白长文、聊天或公开动态。</view>
+        <view class="field">
+          <view class="label">对方名字 *</view>
+          <input class="input" value="{{form.targetName}}" placeholder="例如：Ada" bindinput="onInput" data-key="targetName" />
+        </view>
+        <view class="field">
+          <view class="label">对方学校（可选）</view>
+          <input class="input" value="{{form.targetSchool}}" placeholder="可选" bindinput="onInput" data-key="targetSchool" />
+        </view>
+        <view class="field">
+          <view class="label">对方入学年份（可选）</view>
+          <input class="input" type="number" value="{{form.targetYear}}" placeholder="可选" bindinput="onInput" data-key="targetYear" />
+        </view>
+      </view>
+
+      <view class="boundary">
+        不会通知被记录的人；不能按名字搜索「谁记录过我」；不公开任何记录列表；单方面记录永远不展示给另一方。
+      </view>
+
+      <view class="action"><ui-button type="accent" bindtap="submit">保存这条记录</ui-button></view>
+    </view>
+  </block>
+
+  <block wx:else>
+    <view class="success-box">
+      <view class="success-title">已保存为一条关系资料</view>
+      <view class="success-sub">不会打扰对方。记录仍是灰的，除非对方也写下你且身份能确认。</view>
+      <view class="action"><ui-button type="accent" bindtap="goAnother">再写一个</ui-button></view>
+      <view class="action"><ui-button type="secondary" bindtap="goRecords">查看我的记录</ui-button></view>
+      <view class="action"><ui-button type="ghost" bindtap="goHome">稍后再看</ui-button></view>
+    </view>
+  </block>
+</view>
