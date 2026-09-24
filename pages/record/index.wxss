@@ -1,4 +1,28 @@
-.form { margin-top: 36rpx; }
+.step-pill {
+  display: inline-flex;
+  margin-top: 20rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 999rpx;
+  background: rgba(232, 111, 103, 0.12);
+  color: var(--accent-strong);
+  font-size: 22rpx;
+  font-weight: 700;
+}
+.section-primary {
+  padding: 28rpx;
+  border-radius: 26rpx;
+  background: rgba(255, 255, 255, 0.86);
+  border: 2rpx solid rgba(232, 111, 103, 0.22);
+  box-shadow: 0 14rpx 40rpx rgba(122, 74, 61, 0.08);
+}
+.field-focus { margin-top: 8rpx; }
+.input-primary {
+  height: 104rpx;
+  font-size: 32rpx;
+  font-weight: 700;
+  border-color: rgba(232, 111, 103, 0.35);
+}
+.form { margin-top: 28rpx; }
 .section { margin-bottom: 40rpx; }
 .section-head { font-size: 34rpx; font-weight: 800; margin-bottom: 8rpx; }
 .section-sub { color: var(--muted); font-size: 24rpx; line-height: 1.55; margin-bottom: 20rpx; }

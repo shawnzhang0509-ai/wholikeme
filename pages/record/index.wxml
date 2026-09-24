@@ -2,14 +2,33 @@
   <view class="demo-tag">Prototype · Demo Data</view>
 
   <block wx:if="{{phase === 'form'}}">
-    <view class="eyebrow">I liked record</view>
-    <view class="title">记录一个名字</view>
-    <view class="subtitle">一次只记一个人。记录默认是灰的，只有双向确认后才会点亮。</view>
+    <view class="step-pill">第一步 · 先说我喜欢谁</view>
+    <view class="title">写下这一个名字</view>
+    <view class="subtitle">产品第一视角是「我喜欢过谁」。身份信息只为确认双向信号，不会公开给单方面未匹配的人。</view>
+
+    <record-showcase />
 
     <view class="form">
+      <view class="section section-primary">
+        <view class="section-head">我喜欢的人是 *</view>
+        <view class="section-sub">一次只记一个人。填完再保存；下方身份锚点仅首次需要。</view>
+        <view class="field field-focus">
+          <view class="label">TA 的名字</view>
+          <input class="input input-primary" value="{{form.targetName}}" placeholder="先写在这里，例如：Ada" bindinput="onInput" data-key="targetName" />
+        </view>
+        <view class="field">
+          <view class="label">TA 的学校（可选）</view>
+          <input class="input" value="{{form.targetSchool}}" placeholder="可选，帮助以后确认身份" bindinput="onInput" data-key="targetSchool" />
+        </view>
+        <view class="field">
+          <view class="label">TA 的入学年份（可选）</view>
+          <input class="input" type="number" value="{{form.targetYear}}" placeholder="可选" bindinput="onInput" data-key="targetYear" />
+        </view>
+      </view>
+
       <view class="section">
-        <view class="section-head">A. 我的身份锚点</view>
-        <view class="section-sub" wx:if="{{!hasAnchor}}">首次记录必填，用于以后继续完善关系资料。</view>
+        <view class="section-head">{{hasAnchor ? '我的身份（已保存）' : '第二步 · 我的身份锚点'}}</view>
+        <view class="section-sub" wx:if="{{!hasAnchor}}">首次保存前必填：用来在双向时确认「是不是这个人」。</view>
         <view class="anchor-summary" wx:else>{{anchorSummary}}</view>
 
         <block wx:if="{{!hasAnchor}}">
@@ -36,32 +55,20 @@
         </block>
       </view>
 
-      <view class="section">
-        <view class="section-head">B. 这一个我喜欢过的人</view>
-        <view class="section-sub">一次只能写一个名字；对方学校/年份可选。不做表白长文、聊天或公开动态。</view>
-        <view class="field">
-          <view class="label">对方名字 *</view>
-          <input class="input" value="{{form.targetName}}" placeholder="例如：Ada" bindinput="onInput" data-key="targetName" />
-        </view>
-        <view class="field">
-          <view class="label">对方学校（可选）</view>
-          <input class="input" value="{{form.targetSchool}}" placeholder="可选" bindinput="onInput" data-key="targetSchool" />
-        </view>
-        <view class="field">
-          <view class="label">对方入学年份（可选）</view>
-          <input class="input" type="number" value="{{form.targetYear}}" placeholder="可选" bindinput="onInput" data-key="targetYear" />
-        </view>
-      </view>
-
       <view class="boundary">
         不会通知被记录的人；不能按名字搜索「谁记录过我」；不公开任何记录列表；单方面记录永远不展示给另一方。
       </view>
 
-      <view class="action"><ui-button type="accent" bindtap="submit">保存这条记录</ui-button></view>
+      <view class="action"><ui-button type="accent" bindtap="submit">保存：我喜欢 {{form.targetName || '这一位'}}</ui-button></view>
     </view>
   </block>
 
   <block wx:else>
+    <record-showcase
+      title="已保存 · 现在处于灰态"
+      subtitle="你的记录已在本地列表里，样式类似 showcase 左侧。若 demo 中 TA 也写下你（如 Ada），稍后在「我的记录」里会进入身份确认。"
+      footnote="去「我的记录」查看；双向确认后才会变成 showcase 右侧那样。"
+    />
     <view class="success-box">
       <view class="success-title">已保存为一条关系资料</view>
       <view class="success-sub">不会打扰对方。记录仍是灰的，除非对方也写下你且身份能确认。</view>

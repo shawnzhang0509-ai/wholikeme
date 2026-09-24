@@ -1,10 +1,16 @@
 <view class="container hero">
-  <view class="eyebrow">I-liked-record experiment</view>
+  <view class="eyebrow">I-liked-record</view>
   <view class="title">我喜欢过谁？</view>
   <view class="subtitle">把没说完的喜欢，轻轻记下来。若对方也写下你，这条记录会点亮。</view>
   <view class="demo-tag">Prototype · Demo Data</view>
 
-  <view style="height: 72rpx"></view>
+  <record-showcase
+    title="双向喜欢 · 记录长什么样？"
+    subtitle="先写你喜欢谁。默认是灰的；双向确认后，才会在列表里点亮。"
+    footnote="Demo：名单里写 Ada 可在「我的记录」体验双向确认流程。"
+  />
+
+  <view style="height: 40rpx"></view>
   <ui-button type="accent" bindtap="goRecord">记录一个名字</ui-button>
   <ui-button type="ghost" bindtap="goRecords">查看我的记录</ui-button>
 

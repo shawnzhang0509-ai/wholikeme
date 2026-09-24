@@ -1,0 +1,29 @@
+<view class="showcase">
+  <view class="showcase-title">{{title}}</view>
+  <view class="showcase-sub">{{subtitle}}</view>
+
+  <view class="flow">
+    <view class="mini-card is-unlit">
+      <view class="mini-label">现在 · 保存后默认</view>
+      <view class="mini-name">???</view>
+      <view class="mini-meta">一条关系资料</view>
+      <view class="mini-tag">未点亮</view>
+      <view class="mini-note">只有你知道写过 TA</view>
+    </view>
+
+    <view class="arrow-col">
+      <view class="arrow">→</view>
+      <view class="arrow-caption">若对方也写下你，且身份对得上</view>
+    </view>
+
+    <view class="mini-card is-lit">
+      <view class="mini-label">双向时 · 才会出现</view>
+      <view class="mini-name">Ada</view>
+      <view class="mini-meta">杭州 · 实验中学 · 2010级</view>
+      <view class="mini-tag lit">signal · mutual</view>
+      <view class="mini-note">不展示单方或未确认的人</view>
+    </view>
+  </view>
+
+  <view class="showcase-foot">{{footnote}}</view>
+</view>
