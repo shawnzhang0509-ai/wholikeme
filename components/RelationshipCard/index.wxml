@@ -1,4 +1,4 @@
-<view class="rel-card {{unlocked ? "is-unlocked" : ""}}">
+<view class="rel-card {{unlocked ? 'is-unlocked' : ''}}">
   <view class="top">
     <view class="secret">{{unlocked ? "❤️" : "???"}}</view>
     <view class="name">{{person.name || "某个人"}}</view>

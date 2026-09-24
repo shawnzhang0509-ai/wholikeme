@@ -1,4 +1,4 @@
-<button class="btn {{type ? "btn--" + type : ""}} {{loading ? "is-loading" : ""}}" disabled="{{disabled || loading}}" bindtap="onTap">
+<button class="btn {{type ? 'btn--' + type : ''}} {{loading ? 'is-loading' : ''}}" disabled="{{disabled || loading}}" bindtap="onTap">
   <text wx:if="{{loading}}">正在准备…</text>
   <slot wx:else></slot>
 </button>

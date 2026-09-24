@@ -5,5 +5,5 @@
     <view class="meta">{{meta}}</view>
     <view class="hint">{{person.relationHint}}</view>
   </view>
-  <view class="badge {{person.type === "liked" ? "badge--liked" : ""}}">{{label}}</view>
+  <view class="badge {{person.type === 'liked' ? 'badge--liked' : ''}}">{{label}}</view>
 </view>
