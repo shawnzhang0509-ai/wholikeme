@@ -4,9 +4,10 @@ Component({
   data: { initial: '?', meta: '', label: '' },
   observers: {
     person(p) {
+      const meta = p.schoolDisplay || joinParts([p.school, p.enrollmentYear ? `${p.enrollmentYear} 级` : '', p.city])
       this.setData({
         initial: (p.name || '?').slice(0, 1),
-        meta: joinParts([p.school, p.enrollmentYear ? `${p.enrollmentYear} 级` : '', p.city]),
+        meta,
         label: relationLabel(p.type)
       })
     }
